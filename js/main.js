@@ -24,9 +24,9 @@ function getRandomPositiveInteger (a, b) {
   return Math.floor(result);
 }
 
-const stringLength = (string, maxlenght) => {
+function stringLength(string, maxlenght) {
   return string.length <= maxlenght;
-};
+}
 stringLength('wwww', 5);
 
 
