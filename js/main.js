@@ -27,7 +27,7 @@ function getRandomPositiveInteger (a, b) {
 const stringLength = (string, maxlenght) => {
   return string.length <= maxlenght;
 };
-
+stringLength('wwww', 5);
 
 
 const PHOTO_DESCRIPTION_ARRAY = [
