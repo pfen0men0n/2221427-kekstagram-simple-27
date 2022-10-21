@@ -48,7 +48,7 @@ const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0,
 
 const createPhotoObject = (index) => ({
   id: index,
-  url: `photos/${index}.jpg`,
+  url: `photos/${index + 1}.jpg`,
   description: getRandomArrayElement(PHOTO_DESCRIPTION_ARRAY),
   likes: getRandomPositiveInteger(15, 200),
   comments: getRandomPositiveInteger(0, 200),
