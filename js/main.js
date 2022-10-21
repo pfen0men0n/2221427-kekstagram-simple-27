@@ -24,12 +24,10 @@ function getRandomPositiveInteger (a, b) {
   return Math.floor(result);
 }
 
-const stringLenght = (string, maxlenght) => {
-  const result = string.length <= maxlenght;
-  return result;
-
+const stringLength = (string, maxlenght) => {
+  return string.length <= maxlenght;
 };
-stringLenght('');
+stringLength();
 
 
 const PHOTO_DESCRIPTION_ARRAY = [
@@ -48,7 +46,7 @@ const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0,
 
 const createPhotoObject = (index) => ({
   id: index,
-  url: `photos/${index + 1}.jpg`,
+  url: `photos/${index + 1}.jpg`, // поправил, чтобы с единицы начиналось
   description: getRandomArrayElement(PHOTO_DESCRIPTION_ARRAY),
   likes: getRandomPositiveInteger(15, 200),
   comments: getRandomPositiveInteger(0, 200),
