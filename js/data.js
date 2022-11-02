@@ -22,5 +22,7 @@ const createPhotoObject = (index) => ({
 });
 
 const createPhotos = () => Array.from({length: TOTAL_PHOTO_DOWNLOADED}, (_x, index) => createPhotoObject(index));
-export {createPhotos};
+export {createPhotos,
+  TOTAL_PHOTO_DOWNLOADED
+};
 
