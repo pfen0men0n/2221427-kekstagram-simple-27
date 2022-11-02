@@ -1,8 +1,6 @@
 import {createPhotos} from './data.js';
 
 const pictureContainer = document.querySelector('.pictures');
-pictureContainer.classList.remove('visually-hidden');
-
 
 const picturesTemlpate = document.querySelector('#picture').content.querySelector('.picture');
 
