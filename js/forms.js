@@ -6,23 +6,23 @@ const imageUploadOverlay = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const uploadFileField = document.querySelector('#upload-file');
 
-const pristine = new Pristine(imageUploadForm, {
-  classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--invalid ',
-}, true);
+// const pristine = new Pristine(imageUploadForm, {
+//   classTo: 'img-upload__field-wrapper',
+//   errorTextParent: 'img-upload__field-wrapper',
+//   errorTextClass: 'img-upload__field-wrapper--invalid ',
+// }, true);
 
-imageUploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+imageUploadForm.addEventListener('submit', () => {
+  // evt.preventDefault();
 
-  const isValid = pristine.validate();
-  if (isValid) {
-    // eslint-disable-next-line no-console
-    console.log('Можно отправлять');
-  } else {
-    // eslint-disable-next-line no-console
-    console.log('Форма невалидна');
-  }
+  // const isValid = pristine.validate();
+  // if (isValid) {
+  //   // eslint-disable-next-line no-console
+  //   console.log('Можно отправлять');
+  // } else {
+  //   // eslint-disable-next-line no-console
+  //   console.log('Форма невалидна');
+  // }
 });
 
 const onModalWindowEscKeydown = (evt) => {
@@ -55,9 +55,9 @@ const onUploadFileFieldChange = () => {
   openModalWindow();
 };
 
-const onImageUploadFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
+const onImageUploadFormSubmit = () => {
+  // evt.preventDefault();
+  // pristine.validate();
 };
 
 uploadFileField.addEventListener('change', onUploadFileFieldChange);
