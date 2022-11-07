@@ -22,20 +22,12 @@ pristine.addValidator(
   'Длина комментария не менее 20 и не более 140 символов',
 );
 
-
-imageUploadForm.addEventListener('submit', () => {
-  // evt.preventDefault();
-  pristine.validateImageDescription();
-});
-
-
 const onModalWindowEscKeydown = (evt) => {
   if (isEscKey(evt)) {
     evt.preventDefault();
     closeModalWindow();
   }
 };
-
 
 function openModalWindow () {
   imageUploadOverlay.classList.remove('hidden');
@@ -59,12 +51,16 @@ const onUploadFileFieldChange = () => {
   openModalWindow();
 };
 
-const onImageUploadFormSubmit = () => {
-};
-
 uploadFileField.addEventListener('change', onUploadFileFieldChange);
 cancelButton.addEventListener('click', onCloseButtonClick);
-imageUploadForm.addEventListener('submit', onImageUploadFormSubmit);
+
+imageUploadForm.addEventListener('submit', (evt) => {
+  const isValid = pristine.validate();
+
+  if (!isValid) {
+    evt.preventDefault();
+  }
+});
 
 export {
   openModalWindow,
