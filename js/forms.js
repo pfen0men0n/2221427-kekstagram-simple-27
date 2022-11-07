@@ -6,24 +6,36 @@ const imageUploadOverlay = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const uploadFileField = document.querySelector('#upload-file');
 
-// const pristine = new Pristine(imageUploadForm, {
-//   classTo: 'img-upload__field-wrapper',
-//   errorTextParent: 'img-upload__field-wrapper',
-//   errorTextClass: 'img-upload__field-wrapper--invalid ',
-// }, true);
+
+const pristine = new Pristine(imageUploadForm, {
+  classTo: 'img-upload__text',
+  errorTextParent: 'img-upload__text',
+  errorTextClass: 'img-upload__text',
+}, true);
+
+const validateImageDescription = (value) =>
+  value.length >= '20' && value.length <= '140';
+
+pristine.addValidator(
+  imageUploadForm.querySelector('#description'),
+  validateImageDescription,
+  'Длина комментария не менее 20 и не более 140 символов',
+);
+
 
 imageUploadForm.addEventListener('submit', () => {
   // evt.preventDefault();
-
-  // const isValid = pristine.validate();
-  // if (isValid) {
-  //   // eslint-disable-next-line no-console
-  //   console.log('Можно отправлять');
-  // } else {
-  //   // eslint-disable-next-line no-console
-  //   console.log('Форма невалидна');
-  // }
+  pristine.validateImageDescription();
 });
+// const isValid = pristine.validate();
+// if (isValid) {
+//   // eslint-disable-next-line no-console
+//   console.log('Можно отправлять');
+// } else {
+//   // eslint-disable-next-line no-console
+//   console.log('Форма невалидна');
+// }
+
 
 const onModalWindowEscKeydown = (evt) => {
   if (isEscKey(evt)) {
