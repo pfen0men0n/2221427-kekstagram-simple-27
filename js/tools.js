@@ -13,7 +13,11 @@ const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0,
 const stringLength = (string, maxlenght) => string.length <= maxlenght;
 stringLength('wwww', 12);
 
+const isEscKey = (evt) => evt.key === 'Escape';
+
+
 export {
   getRandomPositiveInteger,
-  getRandomArrayElement
+  getRandomArrayElement,
+  isEscKey
 };
