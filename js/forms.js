@@ -27,14 +27,6 @@ imageUploadForm.addEventListener('submit', () => {
   // evt.preventDefault();
   pristine.validateImageDescription();
 });
-// const isValid = pristine.validate();
-// if (isValid) {
-//   // eslint-disable-next-line no-console
-//   console.log('Можно отправлять');
-// } else {
-//   // eslint-disable-next-line no-console
-//   console.log('Форма невалидна');
-// }
 
 
 const onModalWindowEscKeydown = (evt) => {
@@ -68,8 +60,6 @@ const onUploadFileFieldChange = () => {
 };
 
 const onImageUploadFormSubmit = () => {
-  // evt.preventDefault();
-  // pristine.validate();
 };
 
 uploadFileField.addEventListener('change', onUploadFileFieldChange);
