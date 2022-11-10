@@ -1,4 +1,6 @@
 import {isEscKey} from './tools.js';
+import {resetPictureScale} from './scale-edit.js';
+import {resetEffects} from './effects-edit.js';
 
 const body = document.querySelector('body');
 const imageUploadForm = document.querySelector('.img-upload__form');
@@ -36,6 +38,8 @@ function openModalWindow () {
 
 }
 function closeModalWindow () {
+  resetPictureScale();
+  resetEffects();
   imageUploadForm.reset();
   imageUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -66,4 +70,3 @@ export {
   openModalWindow,
   closeModalWindow
 };
-
