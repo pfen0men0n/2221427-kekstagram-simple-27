@@ -1,13 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-import {createPhotos} from './data.js';
+import {renderPhotos} from './thumbnail-pictures.js';
+import {getData} from './api.js';
+import {closeModalWindow, setUserFormSubmit} from './forms.js';
 
-// eslint-disable-next-line no-unused-vars
-import {usersPhotos} from './thumbnail-pictures.js';
-
-// eslint-disable-next-line no-unused-vars
-import {openModalWindow} from './forms.js';
-
-// eslint-disable-next-line no-unused-vars
-import {closeModalWindow} from './forms.js';
-
-
+getData((photos) => {
+  renderPhotos(photos);
+});
+setUserFormSubmit(closeModalWindow);

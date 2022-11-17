@@ -1,12 +1,16 @@
 import {isEscKey} from './tools.js';
 import {resetPictureScale} from './scale-edit.js';
 import {resetEffects} from './effects-edit.js';
+import {showSuccessMessage, showErrorMessage} from './alert-messages.js';
+import { sendData } from './api.js';
+
 
 const body = document.querySelector('body');
 const imageUploadForm = document.querySelector('.img-upload__form');
 const imageUploadOverlay = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const uploadFileField = document.querySelector('#upload-file');
+const submitButton = imageUploadForm.querySelector('.img-upload__submit');
 
 
 const pristine = new Pristine(imageUploadForm, {
@@ -58,15 +62,44 @@ const onUploadFileFieldChange = () => {
 uploadFileField.addEventListener('change', onUploadFileFieldChange);
 cancelButton.addEventListener('click', onCloseButtonClick);
 
-imageUploadForm.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикую...';
+};
 
-  if (!isValid) {
+const unBlockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
+const setUserFormSubmit = (onSuccess) => {
+  imageUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  }
-});
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          onSuccess();
+          showSuccessMessage();
+          unBlockSubmitButton();
+        },
+        () => {
+          showErrorMessage();
+          unBlockSubmitButton();
+          document.removeEventListener('keydown', onModalWindowEscKeydown);
+        },
+        new FormData(evt.target)
+      );
+    }
+  });
+};
+
 
 export {
   openModalWindow,
-  closeModalWindow
+  closeModalWindow,
+  setUserFormSubmit,
+  onModalWindowEscKeydown,
 };

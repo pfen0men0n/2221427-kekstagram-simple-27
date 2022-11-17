@@ -29,4 +29,4 @@ const onFormChange = (evt) => {
 
 form.addEventListener('change', onFormChange, resetEffects);
 
-export{resetEffects};
+export {resetEffects};
