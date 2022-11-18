@@ -1,13 +1,10 @@
-// eslint-disable-next-line no-unused-vars
-import {createPhotos} from './data.js';
+//импорты
+import {renderPhotos} from './thumbnail-pictures.js';
+import {getData} from './api.js';
+import {closeModalWindow, setUserFormSubmit} from './forms.js';
 
-// eslint-disable-next-line no-unused-vars
-import {usersPhotos} from './thumbnail-pictures.js';
-
-// eslint-disable-next-line no-unused-vars
-import {openModalWindow} from './forms.js';
-
-// eslint-disable-next-line no-unused-vars
-import {closeModalWindow} from './forms.js';
-
-
+//функция по отрисовке пользовательских изображений на главной странице и сеттер формы
+getData((photos) => {
+  renderPhotos(photos);
+});
+setUserFormSubmit(closeModalWindow);
