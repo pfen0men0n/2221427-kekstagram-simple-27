@@ -1,46 +1,53 @@
+//импорты
 import {isEscKey} from './tools.js';
-import {onModalWindowEscKeydown} from './forms.js';
 
+//переменные для определения DOM элементов использующихся при работе с попапами не/удачной загрузки фото
 const successMessage = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
 const errorMessage = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
 const successButton = successMessage.querySelector('.success__button');
 const errorButton = errorMessage.querySelector('.error__button');
 
+//переменная для работы с клонированными узлами DOM
 let typeMessage;
 
-const onErrorEscKeydown = (evt) => {
+//фенкция обработчик нажатия на ESC при активном попапе не/удачной загрузки фото
+const onErrorSussessPopupEscKeydown = (evt) => {
   if(isEscKey(evt)) {
-    closeAlertMessage();
-    document.addEventListener('keydown', onModalWindowEscKeydown, true);
+    closeErrorSuccessPopup();
   }
 };
 
-const onMessageClose = (evt) => {
+//функция обработчик закрытия по клику попапа не/удачной загрузки фото
+const onErrorSuccessPopupClose = (evt) => {
   if (evt.target === typeMessage) {
-    closeAlertMessage();
+    closeErrorSuccessPopup();
   }
 };
 
-function closeAlertMessage() {
+//функция обработчик закрытия попапа
+function closeErrorSuccessPopup() {
   typeMessage.remove();
-  document.removeEventListener('keydown', onErrorEscKeydown, true);
-  document.removeEventListener('click',onMessageClose);
+  document.removeEventListener('keydown', onErrorSussessPopupEscKeydown);
+  document.removeEventListener('click',onErrorSuccessPopupClose);
 }
 
-const showSuccessMessage = () => {
+//функция показа попапа об успешной отправке фото
+const showSuccessMessagePopup = () => {
   typeMessage = successMessage;
   document.body.append(successMessage);
-  successButton.addEventListener('click', closeAlertMessage);
-  document.addEventListener('keydown', onErrorEscKeydown, true);
-  document.addEventListener('click', onMessageClose);
+  successButton.addEventListener('click', closeErrorSuccessPopup);
+  document.addEventListener('keydown', onErrorSussessPopupEscKeydown);
+  document.addEventListener('click', onErrorSuccessPopupClose);
 };
 
-const showErrorMessage = () => {
+//функция показа попапа о неудачной отправке фото
+const showErrorMessagePopup = () => {
   typeMessage = errorMessage;
   document.body.append(errorMessage);
-  errorButton.addEventListener('click', closeAlertMessage);
-  document.addEventListener('keydown', onErrorEscKeydown, true);
-  document.addEventListener('click', onMessageClose);
+  errorButton.addEventListener('click', closeErrorSuccessPopup);
+  document.addEventListener('keydown', onErrorSussessPopupEscKeydown);
+  document.addEventListener('click', onErrorSuccessPopupClose);
 };
 
-export {showSuccessMessage, showErrorMessage};
+//экспорты
+export {showSuccessMessagePopup, showErrorMessagePopup};
