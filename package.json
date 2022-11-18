@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lint": "^1.1.2"
+    "lint": "1.1.2"
   },
   "scripts": {
     "start": "browser-sync start --server --no-ui --files \"js/**/*.js\"",
